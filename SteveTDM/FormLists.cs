@@ -100,19 +100,22 @@ namespace SteveTDM
             {
                 listTodo = (from t in db.Todos where t.Hidden == 0 orderby t.Position ascending select t).ToList();
 
-                db.Dispose();
-            }
+                int nListId, nSubtasks;
 
-            for (int nCount = 0; nCount < listTodo.Count; nCount++)
-            {
-                listviewTodoLists.Items.Add(new ListViewItem(new string[] {
+                for (int nCount = 0; nCount < listTodo.Count; nCount++)
+                {
+                    nListId = listTodo[nCount].ListId;
+                    nSubtasks = db.Tasks.Where(t => t.ListId == nListId && t.Complete == 0).Count();
+
+                    listviewTodoLists.Items.Add(new ListViewItem(new string[] {
                       listTodo[nCount].Name
                     , listTodo[nCount].Priority.ToString()
-                    , "0"
                     , listTodo[nCount].Description
-                    , "0"
+                    , nSubtasks.ToString()
                     , listTodo[nCount].Duedate
-                }));
+                    }));
+                }
+                db.Dispose();
             }
         }
 

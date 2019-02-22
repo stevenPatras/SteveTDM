@@ -31,7 +31,6 @@
             this.listviewTodoLists = new System.Windows.Forms.ListView();
             this.colListName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPriority = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colProgress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTaskCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDueDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,7 +48,6 @@
             this.listviewTodoLists.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colListName,
             this.colPriority,
-            this.colProgress,
             this.colDescription,
             this.colTaskCount,
             this.colDueDate});
@@ -72,11 +70,6 @@
             // colPriority
             // 
             this.colPriority.Text = "Priority";
-            // 
-            // colProgress
-            // 
-            this.colProgress.Text = "Progress";
-            this.colProgress.Width = 55;
             // 
             // colDescription
             // 
@@ -186,7 +179,6 @@
         private System.Windows.Forms.ListView listviewTodoLists;
         private System.Windows.Forms.ColumnHeader colListName;
         private System.Windows.Forms.ColumnHeader colPriority;
-        private System.Windows.Forms.ColumnHeader colProgress;
         private System.Windows.Forms.ColumnHeader colDescription;
         private System.Windows.Forms.ColumnHeader colTaskCount;
         private System.Windows.Forms.ColumnHeader colDueDate;
