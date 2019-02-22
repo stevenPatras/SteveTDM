@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SteveTDMDbModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\Fettbacon\source\repos\SteveTDM\SteveTDMDb.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListId" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Priority" Type="integer" Nullable="false" />
+          <Property Name="Complete" Type="integer" Nullable="false" />
+          <Property Name="Weight" Type="integer" Nullable="false" />
+          <Property Name="ParentId" Type="integer" />
+          <Property Name="DueDate" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Position" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Todos">
+          <Key>
+            <PropertyRef Name="ListId" />
+          </Key>
+          <Property Name="ListId" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Priority" Type="integer" Nullable="false" />
+          <Property Name="Duedate" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Hidden" Type="integer" Nullable="false" />
+          <Property Name="Position" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SteveTDMDbModelStoreContainer">
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" store:Type="Tables" />
+          <EntitySet Name="Todos" EntityType="Self.Todos" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SteveTDMDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="ListId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Priority" Type="Int64" Nullable="false" />
+          <Property Name="Complete" Type="Int64" Nullable="false" />
+          <Property Name="Weight" Type="Int64" Nullable="false" />
+          <Property Name="ParentId" Type="Int64" />
+          <Property Name="DueDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Position" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SteveTDMDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Todos" EntityType="SteveTDMDbModel.Todo" />
+        </EntityContainer>
+        <EntityType Name="Todo">
+          <Key>
+            <PropertyRef Name="ListId" />
+          </Key>
+          <Property Name="ListId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int64" Nullable="false" />
+          <Property Name="Duedate" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Hidden" Type="Int64" Nullable="false" />
+          <Property Name="Position" Type="Int64" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SteveTDMDbModelStoreContainer" CdmEntityContainer="SteveTDMDbEntities">
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="SteveTDMDbModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ListId" ColumnName="ListId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Complete" ColumnName="Complete" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Todos">
+            <EntityTypeMapping TypeName="SteveTDMDbModel.Todo">
+              <MappingFragment StoreEntitySet="Todos">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Hidden" ColumnName="Hidden" />
+                <ScalarProperty Name="Duedate" ColumnName="Duedate" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ListId" ColumnName="ListId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
