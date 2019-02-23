@@ -77,8 +77,19 @@ namespace SteveTDM
                 db.Tasks.Remove(task);
                 db.SaveChanges();
 
+                List<Task> listToReOrder = (from t in db.Tasks where t.ParentId == task.ParentId && t.ListId == task.ListId orderby t.Position ascending select t).ToList();
+                if (listToReOrder.Count > 0)
+                {
+                    for(int i = 0; i < listToReOrder.Count; i++)
+                    {
+                        listToReOrder[i].Position = i;
+                        db.SaveChanges();
+                    }
+                }
+
                 db.Dispose();
             }
+            
 
             RefreshTaskManager();
         }
